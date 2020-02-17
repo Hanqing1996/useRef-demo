@@ -1,18 +1,24 @@
 import React, { Component, useState } from 'react'
 
+const RefObj = {}
+function myUseRef(initialValue) {
+  if (RefObj.current === undefined) {
+    RefObj.current = initialValue
+  }
+  return RefObj
+}
+
 function App() {
 
-  const nRef = React.useRef(0) // {current:0},
-  console.log(nRef)
-  const seTN=React.useState(0)[1]
-
+  const nRef = myUseRef(0) // {current:0},
+  const seTN = React.useState(0)[1]
 
   const add = () => {
-    nRef.current+=1
-    seTN(nRef.current)
+    nRef.current += 1
+    seTN(nRef.current) 
   }
   const minus = () => {
-    nRef.current-=1
+    nRef.current -= 1
     seTN(nRef.current)
   }
 

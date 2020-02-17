@@ -2,9 +2,7 @@
 1. 用 vue3
 2. react：用 useRef
 
-* nRef.current+=1 不会触发 render
-* 如果在 nRef.current+=1 后手动触发 render，那么
-
+* nRef.current+=1 后不会主动触发 render，但是在 render 由于别的原因被触发后, nRef.current 将发生更新
 
 React.useRef(0) 原理
 
