@@ -1,33 +1,21 @@
-import React, { Component, useState } from 'react'
-
-const RefObj = {}
-function myUseRef(initialValue) {
-  if (RefObj.current === undefined) {
-    RefObj.current = initialValue
-  }
-  return RefObj
-}
+import React, { useRef, useState } from 'react'
 
 function App() {
 
-  const nRef = myUseRef(0) // {current:0},
-  const seTN = React.useState(0)[1]
+  const nRef = useRef(0) // {current:0},
+  const [n,seTN] = useState(0)
 
   const add = () => {
     nRef.current += 1
-    seTN(nRef.current) 
+    if(nRef.current===5){ // nRef.current 被更新了，但不会触发 App 重新执行
+      seTN(n+10)
+    }
   }
-  const minus = () => {
-    nRef.current -= 1
-    seTN(nRef.current)
-  }
-
   return (
     <div>
       <div>{nRef.current}</div>
       <div>
         <button onClick={add}>+1</button>
-        <button onClick={minus}>-1</button>
       </div>
     </div>
   )
